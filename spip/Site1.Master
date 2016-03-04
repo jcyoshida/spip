@@ -1,0 +1,26 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="spip.scripts.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>LA County Probation Department - Strategic Plan 2015-2018</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+
+    </asp:ContentPlaceHolder>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<script src="scripts/jquery-2.2.1.min.js"></script>
+<script src="scripts/bootstrap.min.js"></script>
+<body>
+    <div class="container">
+        <div class="well">
+            <h1 class="text-center">PROBATION'S STRATEGIC PLAN 2015-2018</h1>
+        </div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+</body>
+</html>

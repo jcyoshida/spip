@@ -103,6 +103,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="planb.aspx" />
     <Content Include="scripts\jquery-2.2.1.min.map" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -155,6 +156,13 @@
     </Compile>
     <Compile Include="plan.aspx.designer.cs">
       <DependentUpon>plan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="planb.aspx.cs">
+      <DependentUpon>planb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="planb.aspx.designer.cs">
+      <DependentUpon>planb.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site1.Master.cs">

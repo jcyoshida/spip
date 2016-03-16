@@ -18,7 +18,6 @@ namespace spip
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
             MySqlConnection myConnection = new MySqlConnection(connectionString);
             MySqlCommand myCommand = new MySqlCommand("SELECT id, title FROM goal",myConnection);
             string selectSQL = "SELECT id,title FROM goal";

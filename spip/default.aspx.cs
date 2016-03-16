@@ -29,6 +29,7 @@ namespace spip
                 DSearch.Filter = String.Format("(SAMAccountName={0})", user);
                 SearchResult SResult = DSearch.FindOne();
                 //lblPgStatus.Text = "LOGIN SUCCESS";
+                Session["eno"] = user;
                 Response.Redirect("~/plan.aspx");
 
             }catch (Exception ex)

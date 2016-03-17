@@ -30,7 +30,7 @@ namespace spip
                 SearchResult SResult = DSearch.FindOne();
                 //lblPgStatus.Text = "LOGIN SUCCESS";
                 Session["eno"] = user;
-                Response.Redirect("~/plan.aspx");
+                Response.Redirect("~/myplans.aspx");
 
             }catch (Exception ex)
             {

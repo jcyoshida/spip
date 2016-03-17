@@ -2,7 +2,6 @@
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-    <form runat="server">
         <fieldset disabled>
             <div class="form-group">
                 <asp:label for="disabledTextInput" id="lbldti" runat="server"></asp:label>
@@ -18,7 +17,6 @@
                 </Columns>
                 <RowStyle CssClass="click-row" />
             </asp:GridView>
-        </form>
     <asp:Label ID="lblInfo" runat="server" Text="Label" Visible="false"></asp:Label>
                     <script>
             $(".click-row").click(function () {

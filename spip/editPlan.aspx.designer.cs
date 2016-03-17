@@ -10,7 +10,7 @@
 namespace spip {
     
     
-    public partial class ap {
+    public partial class editPlan {
         
         /// <summary>
         /// lbldti control.

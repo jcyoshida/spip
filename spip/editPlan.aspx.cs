@@ -11,73 +11,16 @@ using System.Web.Configuration;
 
 namespace spip
 {
-    public partial class ap : System.Web.UI.Page
+    public partial class editPlan : System.Web.UI.Page
     {
         private string connectionString = WebConfigurationManager.ConnectionStrings["strategic_planConnectionString"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string goal = Request.QueryString["g"];
-            string obj = Request.QueryString["o"];
-            string strat = Request.QueryString["s"];
-            lbldti.Text = "<strong>GOAL " + goal + ":</strong>";
-            lbldti2.Text = "<strong>OBJECTIVE " + obj + ":</strong>";
-            lbldti3.Text = "<strong>STRATEGY " + strat + ":</strong>";
-
-            MySqlConnection myConnection = new MySqlConnection(connectionString);
-            string selectSQL = "SELECT * FROM goal WHERE id='" + goal + "'";
-            string selectSQL2 = "SELECT * FROM objective WHERE id='" + obj + "'";
-            string selectSQL3 = "SELECT * FROM strategy WHERE id='" + strat + "'";
-            MySqlCommand myCommand = new MySqlCommand(selectSQL, myConnection);
-            MySqlCommand cmd2 = new MySqlCommand(selectSQL2, myConnection);
-            MySqlCommand cmd3 = new MySqlCommand(selectSQL3, myConnection);
-            //string selectSQL4 = "SELECT * FROM strategy WHERE objID='" + obj + "'";
-            //MySqlDataAdapter adapter = new MySqlDataAdapter(selectSQL3, myConnection);
-            //DataSet ds = new DataSet();
-
-            try
-            {
-                myConnection.Open();
-                MySqlDataReader reader;
-                reader = myCommand.ExecuteReader();
-                reader.Read();
-                disabledTextInput.Text = reader["title"].ToString();
-                reader.Close();
-
-                reader = cmd2.ExecuteReader();
-                reader.Read();
-                disabledTextInput2.Text = reader["objDesc"].ToString();
-                reader.Close();
-
-                reader = cmd3.ExecuteReader();
-                reader.Read();
-                disabledTextInput3.Text = reader["stratDesc"].ToString();
-                
-                DateTime date = Convert.ToDateTime(reader["timelines"]);
-                disabledTextInput4.Text = date.ToShortDateString().ToString();
-                reader.Close();
-
-
-
-                //adapter.Fill(ds, "Strategies");
-                //mygv.DataSource = ds;
-                //mygv.DataBind();
-
-                //lblInfo.Text = "Server Ver." + myConnection.ServerVersion;
-
-            }
-            catch (Exception err)
-            {
-                lblInfo.Text = "error reading the db.";
-                lblInfo.Text += err.Message;
-            }
-            finally
-            {
-                myConnection.Close();
-            }
 
             if (!this.IsPostBack)
             {
+                fillDisabled();
                 fillLeads();
             }
         }
@@ -92,6 +35,79 @@ namespace spip
 
                 int g = (int)DataBinder.Eval(e.Row.DataItem, "id");
                 e.Row.Attributes["data-href"] = "ap.aspx?g=" + goal + "&o=" + obj + "&s=" +g;
+            }
+        }
+        private void fillDisabled()
+        {
+            string record = Request.QueryString["r"];
+
+            MySqlConnection myConnection = new MySqlConnection(connectionString);
+            string selectSQL = "SELECT * FROM master WHERE id='" + record + "'";
+
+            MySqlCommand myCommand = new MySqlCommand(selectSQL, myConnection);
+
+
+            try
+            {
+                myConnection.Open();
+                MySqlDataReader reader;
+                //MySqlDataReader reader2;
+                reader = myCommand.ExecuteReader();
+                reader.Read();
+
+                string goal = reader["gID"].ToString();
+                string obj = reader["objID"].ToString();
+                string strat = reader["stratID"].ToString();
+                string lead = reader["leadID"].ToString();
+                string desc = reader["bDescTxt"].ToString();
+                string aPlan = reader["apTxt"].ToString();
+                string impDate = reader["impDate"].ToString();
+                string antDate = reader["acDate"].ToString();
+                string apStatus = reader["apStatus"].ToString();
+                string progress = reader["progressTxt"].ToString();
+                string challenges = reader["challengesTxt"].ToString();
+                string method = reader["methodTxt"].ToString();
+                
+                reader.Close();
+
+                lbldti.Text = "<strong>GOAL " + goal + ":</strong>";
+                lbldti2.Text = "<strong>OBJECTIVE " + obj + ":</strong>";
+                lbldti3.Text = "<strong>STRATEGY " + strat + ":</strong>";
+                brief_desc.Text = desc;
+                actionPlan.Text = aPlan;
+                // Goal information
+                string gSQL = "SELECT * FROM goal where id='" + goal + "'";
+                MySqlCommand cmdGoal = new MySqlCommand(gSQL, myConnection);
+                reader = cmdGoal.ExecuteReader();
+                reader.Read();
+                disabledTextInput.Text = reader["title"].ToString();
+                reader.Close();
+                // Objective information   
+                string oSQL = "SELECT * FROM objective WHERE objNum='" + obj + "' AND gid='"+goal+"'";
+                MySqlCommand cmdObj = new MySqlCommand(oSQL, myConnection);
+                reader = cmdObj.ExecuteReader();
+                reader.Read();
+                disabledTextInput2.Text = reader["objDesc"].ToString();
+                reader.Close();
+                // Strategy information
+                string sSQL = "SELECT * FROM strategy WHERE stratNum='" + strat + "' AND objID='" + obj + "'";
+                MySqlCommand cmdStrat = new MySqlCommand(sSQL, myConnection);
+                reader = cmdStrat.ExecuteReader();
+                reader.Read();
+                disabledTextInput3.Text = reader["stratDesc"].ToString();
+                DateTime date = Convert.ToDateTime(reader["timelines"]);
+                disabledTextInput4.Text = date.ToShortDateString().ToString();
+                reader.Close();
+
+            }
+            catch (Exception err)
+            {
+                lblInfo.Text = "error reading the db.";
+                lblInfo.Text += err.Message;
+            }
+            finally
+            {
+                myConnection.Close();
             }
         }
         private void fillLeads()

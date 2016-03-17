@@ -2,7 +2,6 @@
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <h4 class="text-left">Please Select a Goal</h4>
-        <form id="form1" runat="server">
             <asp:GridView id="mygv" runat="server" CssClass="table table-hover table-striped" OnRowDataBound="mygv_RowDataBound" AutoGenerateColumns="False" GridLines="None">
                 <Columns>
                     <asp:BoundField DataField="id" HeaderText="Goal" />
@@ -14,7 +13,6 @@
             <asp:Label ID="lblInfo" runat="server" Text="Label" Visible="false"></asp:Label>
            
 
-        </form>
         <script>
             $(".click-row").click(function () {
                 window.document.location = $(this).data("href");

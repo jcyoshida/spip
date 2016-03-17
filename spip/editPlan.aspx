@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ap.aspx.cs" Inherits="spip.ap" MasterPageFile="~/Site1.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="editPlan.aspx.cs" Inherits="spip.editPlan" MasterPageFile="~/Site1.Master" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     

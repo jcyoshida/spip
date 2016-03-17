@@ -39,13 +39,17 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
                 <%--<li><a href="plan.aspx"><span class="glyphicon glyphicon-repeat"></span> Start Over</a></li>--%>
-                <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> My Action Plans</a></li>
+                <li><a href="myplans.aspx"><span class="glyphicon glyphicon-list-alt"></span> My Action Plans</a></li>
 
               </ul>
               <ul class="nav navbar-nav navbar-right">
                   
                   <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Admin</a></li>
-                  <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                  <li>
+                      <asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click">
+                        <span class="glyphicon glyphicon-log-out"></span> Logout
+                    </asp:LinkButton></li>
+                  <%--<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>--%>
                 </ul>
             </div>
           </div>

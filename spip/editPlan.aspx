@@ -66,7 +66,7 @@
             <asp:textbox cssclass="form-control" TextMode="MultiLine" rows="5" id="method" runat="server"></asp:textbox>
         </div>
         <asp:LinkButton ID="btn_save" runat="server" CssClass="btn btn-primary" OnClick="btn_save_Click">
-            <span class="glyphicon glyphicon-floppy-disk"></span> Save
+            <span class="glyphicon glyphicon-floppy-disk"></span> Save Changes
         </asp:LinkButton>
         <br /><br />
 

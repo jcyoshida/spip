@@ -163,7 +163,7 @@ namespace spip
             cmd.Parameters.AddWithValue("@obj", obj);
             cmd.Parameters.AddWithValue("@strat", strat);
             cmd.Parameters.AddWithValue("@leads", leads);
-            cmd.Parameters.AddWithValue("@pID", pID);
+            cmd.Parameters.AddWithValue("@pmID", pID);
             cmd.Parameters.AddWithValue("@desc", desc);
             cmd.Parameters.AddWithValue("@ap", ap);
             cmd.Parameters.AddWithValue("@acDate", aDate);

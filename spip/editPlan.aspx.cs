@@ -20,8 +20,9 @@ namespace spip
 
             if (!this.IsPostBack)
             {
-                fillDisabled();
                 fillLeads();
+                fillDisabled();
+                
             }
         }
         protected void mygv_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -61,12 +62,13 @@ namespace spip
                 string lead = reader["leadID"].ToString();
                 string desc = reader["bDescTxt"].ToString();
                 string aPlan = reader["apTxt"].ToString();
-                string impDate = reader["impDate"].ToString();
-                string antDate = reader["acDate"].ToString();
+                string impDate = Convert.ToDateTime(reader["impDate"]).ToString("MM/dd/yyyy");
+                string antDate = Convert.ToDateTime(reader["acDate"]).ToString("MM/dd/yyyy");
                 string apStatus = reader["apStatus"].ToString();
+                string pManager = reader["pmID"].ToString();
                 string progress = reader["progressTxt"].ToString();
-                string challenges = reader["challengesTxt"].ToString();
-                string method = reader["methodTxt"].ToString();
+                string challengesRcvd = reader["challengesTxt"].ToString();
+                string methodRcvd = reader["methodTxt"].ToString();
                 
                 reader.Close();
 
@@ -75,6 +77,14 @@ namespace spip
                 lbldti3.Text = "<strong>STRATEGY " + strat + ":</strong>";
                 brief_desc.Text = desc;
                 actionPlan.Text = aPlan;
+                imp_date.Text = impDate;
+                ant_date.Text = antDate;
+                ap_status.SelectedValue = apStatus;
+                lstLeads.SelectedValue = pManager;
+                op.Text = progress;
+                challenges.Text = challengesRcvd;
+                method.Text = methodRcvd;
+
                 // Goal information
                 string gSQL = "SELECT * FROM goal where id='" + goal + "'";
                 MySqlCommand cmdGoal = new MySqlCommand(gSQL, myConnection);
@@ -145,60 +155,79 @@ namespace spip
 
         protected void btn_save_Click(object sender, EventArgs e)
         {
-            string goal = Request.QueryString["g"];
-            string obj = Request.QueryString["o"];
-            string strat = Request.QueryString["s"];
-            string leads = lstLeads.SelectedValue;
-            string desc = brief_desc.Text;
-            string ap = actionPlan.Text;
-            string ad = ant_date.Text;
-            DateTime dt = Convert.ToDateTime(ad);
-            string aDate = dt.Year+"-"+dt.Month+"-"+dt.Day;
-            string iDate = imp_date.Text;
-            DateTime dt2 = Convert.ToDateTime(iDate);
-            string impDate = dt2.Year + "-" + dt2.Month + "-" + dt2.Day;
-            string apStatus = ap_status.SelectedValue;
-            string overallProgress = op.Text;
-            string chall = challenges.Text;
-            string meth = method.Text;
-            string cBy = (string)(Session["eno"]);
-            //string cBy = "Bob.";
-            string pID = cBy;
-            DateTime cDate = DateTime.Now;
-            cDate.ToString();
-
-
-            string insertSQL = "INSERT INTO master "
-                            + "(gID,objID,stratID,leadID,pmID,bDescTxt,apTxt,impDate,acDate,apStatus,progressTxt,challengesTxt,methodTxt,createdBy,createdDate) "
-                            + "VALUES "
-                            + "(@goal,@obj,@strat,@leads,@pID,@desc,@ap,@impDate,@acDate,@apStatus,@overallProgress,@chall,@meth,@cBy,@cDate)";
+            string record = Request.QueryString["r"];
 
             MySqlConnection con = new MySqlConnection(connectionString);
-            MySqlCommand cmd = new MySqlCommand(insertSQL, con);
-            cmd.Parameters.AddWithValue("@goal", goal);
-            cmd.Parameters.AddWithValue("@obj", obj);
-            cmd.Parameters.AddWithValue("@strat", strat);
-            cmd.Parameters.AddWithValue("@leads", leads);
-            cmd.Parameters.AddWithValue("@pID", pID);
-            cmd.Parameters.AddWithValue("@desc", desc);
-            cmd.Parameters.AddWithValue("@ap", ap);
-            cmd.Parameters.AddWithValue("@acDate", aDate);
-            cmd.Parameters.AddWithValue("@impDate", impDate);
-            cmd.Parameters.AddWithValue("@apStatus", apStatus);
-            cmd.Parameters.AddWithValue("@overallProgress", overallProgress);
-            cmd.Parameters.AddWithValue("@chall", chall);
-            cmd.Parameters.AddWithValue("@meth", meth);
-            cmd.Parameters.AddWithValue("@cBy", cBy);
-            cmd.Parameters.AddWithValue("@cDate", cDate);
+            MySqlDataReader reader;
+            string selectSQL = "SELECT * FROM master WHERE id='" + record + "'";
+
+            MySqlCommand myCommand = new MySqlCommand(selectSQL, con);
+
+            //con.Open();
+
+
+
+            string updateSQL = "UPDATE master SET "
+                            + "gID = @goal, objID = @obj, stratID = @strat, leadID = @leads, pmID = @pID, bDescTxt = @desc, apTxt = @ap, impDate = @impDate, "
+                            + "acDate = @acDate, apStatus = @apStatus, progressTxt = @overallProgress, challengesTxt = @chall, methodTxt = @meth "
+                            + "WHERE id =  @record";
+
+            
+            MySqlCommand cmd = new MySqlCommand(updateSQL, con);
+
+            string logIT = "INSERT INTO logs (modifiedBy, modifiedDate, rID) VALUES (@mBy, @mDate, @record)";
+            MySqlCommand cmd2 = new MySqlCommand(logIT, con);
 
             try
             {
 
                 con.Open();
+                reader = myCommand.ExecuteReader();
+                reader.Read();
+                string goal = reader["gID"].ToString();
+                string obj = reader["objID"].ToString();
+                string strat = reader["stratID"].ToString();
+                reader.Close();
+
+
+
+                string leads = lstLeads.SelectedValue;
+                string desc = brief_desc.Text;
+                string ap = actionPlan.Text;
+                string ad = ant_date.Text;
+                DateTime dt = Convert.ToDateTime(ad);
+                string aDate = dt.Year + "-" + dt.Month + "-" + dt.Day;
+                string iDate = imp_date.Text;
+                DateTime dt2 = Convert.ToDateTime(iDate);
+                string impDate = dt2.Year + "-" + dt2.Month + "-" + dt2.Day;
+                string apStatus = ap_status.SelectedValue;
+                string overallProgress = op.Text;
+                string chall = challenges.Text;
+                string meth = method.Text;
+                string cBy = (string)(Session["eno"]);
+                string pID = cBy;
+                DateTime cDate = DateTime.Now;
+                cDate.ToString();
+                cmd.Parameters.AddWithValue("@goal", goal);
+                cmd.Parameters.AddWithValue("@obj", obj);
+                cmd.Parameters.AddWithValue("@strat", strat);
+                cmd.Parameters.AddWithValue("@leads", leads);
+                cmd.Parameters.AddWithValue("@pmID", pID);
+                cmd.Parameters.AddWithValue("@desc", desc);
+                cmd.Parameters.AddWithValue("@ap", ap);
+                cmd.Parameters.AddWithValue("@acDate", aDate);
+                cmd.Parameters.AddWithValue("@impDate", impDate);
+                cmd.Parameters.AddWithValue("@apStatus", apStatus);
+                cmd.Parameters.AddWithValue("@overallProgress", overallProgress);
+                cmd.Parameters.AddWithValue("@chall", chall);
+                cmd.Parameters.AddWithValue("@meth", meth);
+                cmd.Parameters.AddWithValue("@record", record);
                 cmd.ExecuteNonQuery();
-                //reader = cmd.ExecuteReader();
-                //lblInfo.Visible = true;
-                //lblInfo.Text = goal;
+                cmd2.Parameters.AddWithValue("@mBy", cBy);
+                cmd2.Parameters.AddWithValue("@mDate", cDate);
+                cmd2.Parameters.AddWithValue("@record", record);
+                cmd2.ExecuteNonQuery();
+
 
             }
             catch (Exception err)
@@ -209,7 +238,7 @@ namespace spip
             finally
             {
                 ClientScriptManager cs = Page.ClientScript;
-                cs.RegisterStartupScript(this.GetType(), "showalert", "alert('Plan Saved')", true);
+                cs.RegisterStartupScript(this.GetType(), "showalert", "alert('Plan Updated')", true);
                 con.Close();
                 Response.Redirect("~/myplans.aspx");
             }

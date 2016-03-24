@@ -15,6 +15,7 @@
 <body>
         <div class="container">
         <div class="well">
+            <img src="Content/images/ProbBadgeSmall.png" class="img-responsive pull-left" alt="Probation Logo" />
             <h1 class="text-center">PROBATION'S STRATEGIC PLAN 2015-2018</h1>
         </div>
         <p class="text-justify">Entering the following page is restricted and can only be accessed

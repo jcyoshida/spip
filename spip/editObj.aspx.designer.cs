@@ -10,51 +10,69 @@
 namespace spip {
     
     
-    public partial class objectives {
+    public partial class editObj {
         
         /// <summary>
-        /// sourceGID control.
+        /// lbldti control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource sourceGID;
+        protected global::System.Web.UI.WebControls.Label lbldti;
         
         /// <summary>
-        /// SqlDataSource1 control.
+        /// objDescLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.Label objDescLbl;
         
         /// <summary>
-        /// forlstObj control.
+        /// objDescTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label forlstObj;
+        protected global::System.Web.UI.WebControls.TextBox objDescTxt;
         
         /// <summary>
-        /// lstObj control.
+        /// objLongDescLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList lstObj;
+        protected global::System.Web.UI.WebControls.Label objLongDescLbl;
         
         /// <summary>
-        /// gvGoals control.
+        /// objLongDescTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvGoals;
+        protected global::System.Web.UI.WebControls.TextBox objLongDescTxt;
+        
+        /// <summary>
+        /// btn_save control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btn_save;
+        
+        /// <summary>
+        /// lblInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblInfo;
     }
 }

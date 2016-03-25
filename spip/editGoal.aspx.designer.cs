@@ -31,22 +31,40 @@ namespace spip {
         protected global::System.Web.UI.WebControls.Label goalDescLbl;
         
         /// <summary>
-        /// goalDesc control.
+        /// goalDescTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox goalDesc;
+        protected global::System.Web.UI.WebControls.TextBox goalDescTxt;
         
         /// <summary>
-        /// goalLongDesc control.
+        /// goalLongDescLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox goalLongDesc;
+        protected global::System.Web.UI.WebControls.Label goalLongDescLbl;
+        
+        /// <summary>
+        /// goalLongDescTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox goalLongDescTxt;
+        
+        /// <summary>
+        /// btn_save control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btn_save;
         
         /// <summary>
         /// lblInfo control.

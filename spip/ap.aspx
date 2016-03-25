@@ -16,7 +16,7 @@
                 <asp:TextBox ID="disabledTextInput3" class="form-control" TextMode="MultiLine" Rows="5" runat="server"></asp:TextBox>
             </div>
             <div class="form-group">
-                <asp:label for="disabledTextInput4" id="lbldti4" runat="server" Font-Bold="True" ForeColor="Red" Text="Timeline:"></asp:label>
+                <asp:label for="disabledTextInput4" id="lbldti4" runat="server" Font-Bold="True" ForeColor="Red" Text="TIMELINE:"></asp:label>
                 <asp:TextBox ID="disabledTextInput4" class="form-control" runat="server"></asp:TextBox>
             </div>
         </fieldset>

@@ -11,8 +11,8 @@ namespace spip
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //string uid = (string)(Session["eno"]);
-            string uid = "Bob.";
+            string uid = (string)(Session["eno"]);
+            //string uid = "Bob.";
             SqlDataSource1.SelectParameters.Add("@uid", uid);
             SqlDataSource1.SelectCommand = "SELECT * FROM master where createdBy=@uid";
         }

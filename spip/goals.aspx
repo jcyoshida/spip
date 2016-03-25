@@ -6,7 +6,7 @@
             <Columns>
                 <asp:BoundField datafield="id" headertext="Goal" />
                 <asp:BoundField DataField="title" HeaderText="Goal Description" />
-                <asp:BoundField DataField="desc" HeaderText="Other Description" />        
+                <asp:BoundField DataField="longDes" HeaderText="Other Description" />        
                 <asp:HyperLinkField DataNavigateUrlFields="id" DataNavigateUrlFormatString="editGoal.aspx?r={0}" Text="<span class='glyphicon glyphicon-pencil'></span> Edit" />
             </Columns>
         </asp:GridView>

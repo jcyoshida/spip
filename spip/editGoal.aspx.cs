@@ -40,15 +40,13 @@ namespace spip
 
                 string goal = reader["id"].ToString();
                 string goalDesc = reader["title"].ToString();
-                string goalLongDesc = reader["desc"].ToString();
+                string goalLongDesc = reader["longDes"].ToString();
 
                 reader.Close();
 
                 lbldti.Text = "<strong>GOAL " + goal + "</strong>";
-                //lbldti2.Text = "<strong>OBJECTIVE " + obj + ":</strong>";
-                //lbldti3.Text = "<strong>STRATEGY " + strat + ":</strong>";
-
-
+                goalDescTxt.Text = goalDesc;
+                goalLongDescTxt.Text = goalLongDesc;
 
             }
             catch (Exception err)
@@ -59,6 +57,36 @@ namespace spip
             finally
             {
                 myConnection.Close();
+            }
+        }
+        protected void btn_save_Click(object sender, EventArgs e)
+        {
+            string record = Request.QueryString["r"];
+
+            string updateSQL = "UPDATE goal SET title = @title, longDes = @desc WHERE id = @record";
+            MySqlConnection con = new MySqlConnection(connectionString);
+            MySqlCommand cmd = new MySqlCommand(updateSQL, con);
+            try
+            {
+                con.Open();
+                string titleTxt = goalDescTxt.Text;
+                string descTxt = goalLongDescTxt.Text;
+                cmd.Parameters.AddWithValue("@title", titleTxt);
+                cmd.Parameters.AddWithValue("@desc", descTxt);
+                cmd.Parameters.AddWithValue("@record", record);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception err)
+            {
+                lblInfo.Text = "error: ";
+                lblInfo.Text += err.Message;
+            }
+            finally
+            {
+                ClientScriptManager cs = Page.ClientScript;
+                cs.RegisterStartupScript(this.GetType(), "showalert", "alert('Goal Updated')", true);
+                con.Close();
+                Response.Redirect("~/goals.aspx");
             }
         }
     }

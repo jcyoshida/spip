@@ -5,7 +5,7 @@
         <fieldset disabled>
             <div class="form-group">
                 <asp:label for="disabledTextInput" id="lbldti" runat="server"></asp:label>
-                <asp:TextBox ID="disabledTextInput" class="form-control" runat="server"></asp:TextBox>
+                <asp:TextBox ID="disabledTextInput" class="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
             </div>
             <div class="form-group">
                 <asp:label for="disabledTextInput2" id="lbldti2" runat="server"></asp:label>
@@ -21,30 +21,30 @@
             </div>
         </fieldset>
         <div class="form-group">
-            <asp:Label for="lstLeads" ID="lblLeads" runat="server">LEAD</asp:Label>
+            <asp:Label for="lstLeads" ID="lblLeads" runat="server"><strong>LEAD</strong></asp:Label>
             <asp:DropDownList ID="lstLeads" runat="server" CssClass="form-control"></asp:DropDownList>
         </div>
         <div class="form-group">
-            <asp:label for="brief_desc" runat="server">BRIEF DESCRIPTION</asp:label>
+            <asp:label for="brief_desc" runat="server"><strong>BRIEF DESCRIPTION</strong></asp:label>
             <asp:textbox cssclass="form-control" TextMode="MultiLine" rows="5" id="brief_desc" runat="server"></asp:textbox>
         </div>
         <div class="form-group">
-            <asp:label for="actionPlan" runat="server">ACTION PLAN (MAJOR TASKS)</asp:label>
+            <asp:label for="actionPlan" runat="server"><strong>ACTION PLAN (MAJOR TASKS)</strong></asp:label>
             <asp:textbox cssclass="form-control" TextMode="multiline" rows="5" id="actionPlan" runat="server"></asp:textbox>
         </div>
         <div class="form-group has-feedback">
-            <asp:label for="imp_date" runat="server">IMPLEMENTATION DATE</asp:label>
+            <asp:label for="imp_date" runat="server"><strong>IMPLEMENTATION DATE</strong></asp:label>
             <asp:textbox cssclass="form-control" id="imp_date" runat="server"></asp:textbox>
             <img class="form-control-feedback" src="Content/images/Calendar-icon.png" style="width:25px; height: 25px;" />
         </div>
         <div class="form-group has-feedback">
-            <asp:label for="ant_date" runat="server">ANTICIPATED COMPLETION DATE</asp:label>
+            <asp:label for="ant_date" runat="server"><strong>ANTICIPATED COMPLETION DATE</strong></asp:label>
             <asp:textbox cssclass="form-control" id="ant_date" runat="server"></asp:textbox>
             <img class="form-control-feedback" src="Content/images/Calendar-icon.png" style="width:25px; height: 25px;" />
         </div>
         
         <div class="form-group">
-            <asp:label for="ap_status" runat="server">ACTION PLAN STATUS</asp:label>
+            <asp:label for="ap_status" runat="server"><strong>ACTION PLAN STATUS</strong></asp:label>
             <asp:dropdownlist cssclass="form-control" id="ap_status" runat="server">
                 <asp:listitem value="0" Text="0% - Task Initiated"></asp:listitem>
                 <asp:listitem value="25" Text="25%"></asp:listitem>
@@ -54,15 +54,15 @@
             </asp:dropdownlist>
         </div>
         <div class="form-group">
-            <asp:label for="op" runat="server">OVERALL PROGRESS</asp:label>
+            <asp:label for="op" runat="server"><strong>OVERALL PROGRESS</strong></asp:label>
             <asp:textbox cssclass="form-control" textmode="MultiLine" rows="5" id="op" runat="server"></asp:textbox>
         </div>
         <div class="form-group">
-            <asp:label for="challenges" runat="server">CHALLENGES TO IMPLEMENTING ACTION PLAN AND POSSIBLE SOLUTIONS</asp:label>
+            <asp:label for="challenges" runat="server"><strong>CHALLENGES TO IMPLEMENTING ACTION PLAN AND POSSIBLE SOLUTIONS</strong></asp:label>
             <asp:textbox cssclass="form-control" TextMode="MultiLine" rows="5" id="challenges" runat="server"></asp:textbox>
         </div>
         <div class="form-group">
-            <asp:label for="method" runat="server">METHOD OF EVALUATING/MONITORING THE OUTCOME OF THE STRATEGY</asp:label>
+            <asp:label for="method" runat="server"><strong>METHOD OF EVALUATING/MONITORING THE OUTCOME OF THE STRATEGY</strong></asp:label>
             <asp:textbox cssclass="form-control" TextMode="MultiLine" rows="5" id="method" runat="server"></asp:textbox>
         </div>
         <asp:LinkButton ID="btn_save" runat="server" CssClass="btn btn-primary" OnClick="btn_save_Click">

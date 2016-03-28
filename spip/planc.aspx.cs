@@ -19,16 +19,14 @@ namespace spip
             string goal = Request.QueryString["g"];
             string obj = Request.QueryString["o"];
             lbldti.Text = "<strong>GOAL " + goal + ":</strong>";
-            lbldti2.Text = "<strong>OBJECTIVE " + obj + ":</strong>";
+            //lbldti2.Text = "<strong>OBJECTIVE " + obj + ":</strong>";
 
             MySqlConnection myConnection = new MySqlConnection(connectionString);
             string selectSQL = "SELECT title FROM goal WHERE id='" + goal + "'";
-            string selectSQL2 = "SELECT objDesc FROM objective WHERE id='" + obj + "'";
+            string selectSQL2 = "SELECT gid,objNum,objDesc FROM objective WHERE id='" + obj + "'";
             MySqlCommand myCommand = new MySqlCommand(selectSQL, myConnection);
             MySqlCommand cmd2 = new MySqlCommand(selectSQL2, myConnection);
-            string selectSQL3 = "SELECT * FROM strategy WHERE objID='" + obj + "'";
-            MySqlDataAdapter adapter = new MySqlDataAdapter(selectSQL3, myConnection);
-            DataSet ds = new DataSet();
+            
 
             try
             {
@@ -40,9 +38,14 @@ namespace spip
                 reader.Close();
                 reader = cmd2.ExecuteReader();
                 reader.Read();
+                string oNum = reader["objNum"].ToString();
+                lbldti2.Text = "<strong>OBJECTIVE " + oNum + ":</strong>";
                 disabledTextInput2.Text = reader["objDesc"].ToString();
                 reader.Close();
 
+                string selectSQL3 = "SELECT * FROM strategy WHERE objID='" + obj + "'";
+                MySqlDataAdapter adapter = new MySqlDataAdapter(selectSQL3, myConnection);
+                DataSet ds = new DataSet();
                 adapter.Fill(ds, "Strategies");
                 mygv.DataSource = ds;
                 mygv.DataBind();

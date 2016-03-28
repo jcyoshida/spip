@@ -22,7 +22,7 @@ namespace spip
             MySqlConnection myConnection = new MySqlConnection(connectionString);
             string selectSQL = "SELECT title FROM goal WHERE id='" + goal + "'";
             MySqlCommand myCommand = new MySqlCommand(selectSQL, myConnection);
-            string selectSQLtwo = "SELECT id,objDesc FROM objective WHERE gid='" + goal + "'";
+            string selectSQLtwo = "SELECT id,objNum,objDesc FROM objective WHERE gid='" + goal + "'";
             MySqlDataAdapter adapter = new MySqlDataAdapter(selectSQLtwo, myConnection);
             DataSet ds = new DataSet();
 

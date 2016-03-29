@@ -5,7 +5,7 @@
         <asp:label for="disabledTextInput" id="lbldti" runat="server"></asp:label>
         <br /><br />
         <asp:Label ID="objDescLbl" runat="server"><strong>Title:</strong></asp:Label>
-        <asp:TextBox ID="objDescTxt" CssClass="form-control" runat="server"></asp:TextBox>
+        <asp:TextBox ID="objDescTxt" CssClass="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
         <br /><br />
         <asp:Label ID="objLongDescLbl" runat="server"><strong>Other Description:</strong></asp:Label>
         <asp:TextBox ID="objLongDescTxt" CssClass="form-control" runat="server" TextMode="MultiLine" Rows="5"></asp:TextBox>

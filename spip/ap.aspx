@@ -32,15 +32,23 @@
             <asp:label for="actionPlan" runat="server"><strong>ACTION PLAN (MAJOR TASKS)</strong></asp:label>
             <asp:textbox cssclass="form-control" TextMode="multiline" rows="5" id="actionPlan" runat="server"></asp:textbox>
         </div>
-        <div class="form-group has-feedback">
+        <%--<div class="form-group has-feedback">--%>
+        <div class="form-group">
             <asp:label for="imp_date" runat="server"><strong>IMPLEMENTATION DATE</strong></asp:label>
-            <asp:textbox cssclass="form-control" id="imp_date" runat="server"></asp:textbox>
-            <img class="form-control-feedback" src="Content/images/Calendar-icon.png" style="width:25px; height: 25px;" />
+            <div class="input-group">
+                <span class="input-group-addon"><img id="cal" src="Content/images/Calendar-icon.png" height="20" width="20" /></span>
+                <asp:textbox cssclass="form-control" id="imp_date" runat="server"></asp:textbox>
+            </div>
+            <%--<img class="form-control-feedback" src="Content/images/Calendar-icon.png" style="width:25px; height: 25px;" />--%>
         </div>
-        <div class="form-group has-feedback">
+        <%--<div class="form-group has-feedback">--%>
+        <div class="form-group">
             <asp:label for="ant_date" runat="server"><strong>ANTICIPATED COMPLETION DATE</strong></asp:label>
-            <asp:textbox cssclass="form-control" id="ant_date" runat="server"></asp:textbox>
-            <img class="form-control-feedback" src="Content/images/Calendar-icon.png" style="width:25px; height: 25px;" />
+            <div class="input-group">
+                <span class="input-group-addon"><img id="cal2" src="Content/images/Calendar-icon.png" height="20" width="20" /></span>
+                <asp:textbox cssclass="form-control" id="ant_date" runat="server"></asp:textbox>
+            </div>
+            <%--<img class="form-control-feedback" src="Content/images/Calendar-icon.png" style="width:25px; height: 25px;" />--%>
         </div>
         
         <div class="form-group">
@@ -78,6 +86,12 @@
         window.document.location = $(this).data("href");
     });
     $("[id$=imp_date], [id$=ant_date]").datepicker();
+    $("[id$=cal]").click(function () {
+        $("[id$=imp_date]").datepicker('show');
+    });
+    $("[id$=cal2]").click(function () {
+        $("[id$=ant_date]").datepicker('show');
+    });
 </script>
 
 </asp:Content>

@@ -21,5 +21,14 @@ namespace spip
         {
             Response.Redirect("~/goals.aspx");
         }
+        protected void btnObj_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/objectives.aspx");
+        }
+
+        protected void LinkButton2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/strategies.aspx");
+        }
     }
 }

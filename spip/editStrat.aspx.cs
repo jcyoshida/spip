@@ -10,7 +10,7 @@ using System.Web.Configuration;
 
 namespace spip
 {
-    public partial class editObj : System.Web.UI.Page
+    public partial class editStrat : System.Web.UI.Page
     {
         private string connectionString = WebConfigurationManager.ConnectionStrings["strategic_planConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
@@ -26,7 +26,7 @@ namespace spip
             string record = Request.QueryString["r"];
 
             MySqlConnection myConnection = new MySqlConnection(connectionString);
-            string selectSQL = "SELECT * FROM objective WHERE id='" + record + "'";
+            string selectSQL = "SELECT * FROM strategy WHERE id='" + record + "'";
 
             MySqlCommand myCommand = new MySqlCommand(selectSQL, myConnection);
 
@@ -38,15 +38,21 @@ namespace spip
                 reader = myCommand.ExecuteReader();
                 reader.Read();
 
-                string obj = reader["objNum"].ToString();
-                string objDesc = reader["objDesc"].ToString();
-                string objLongDesc = reader["objDesc2"].ToString();
+                string gID = reader["gID"].ToString();
+                string objID = reader["objID"].ToString();
+                string sNum = reader["stratNum"].ToString();
+                string sDesc = reader["stratDesc"].ToString();
+                string time = reader["timelines"].ToString();
 
                 reader.Close();
 
-                lbldti.Text = "<strong>OBJECTIVE " + obj + "</strong>";
-                objDescTxt.Text = objDesc;
-                objLongDescTxt.Text = objLongDesc;
+                gidTxt.Text = gID;
+                objTxt.Text = objID;
+                sNumTxt.Text = sNum;
+                sDescTxt.Text = sDesc;
+                DateTime dt2 = Convert.ToDateTime(time);
+                string tDate = dt2.Month + "/" + dt2.Day + "/" + dt2.Year;
+                tTxt.Text = tDate;
 
             }
             catch (Exception err)
@@ -63,16 +69,24 @@ namespace spip
         {
             string record = Request.QueryString["r"];
 
-            string updateSQL = "UPDATE objective SET objDesc = @objDesc, objDesc2 = @desc WHERE id = @record";
+            string updateSQL = "UPDATE strategy SET gID = @gID, objID = @objID, stratNum = @sNum, stratDesc = @sDesc, timelines = @timeLine WHERE id = @record";
             MySqlConnection con = new MySqlConnection(connectionString);
             MySqlCommand cmd = new MySqlCommand(updateSQL, con);
             try
             {
                 con.Open();
-                string titleTxt = objDescTxt.Text;
-                string descTxt = objLongDescTxt.Text;
-                cmd.Parameters.AddWithValue("@objDesc", titleTxt);
-                cmd.Parameters.AddWithValue("@desc", descTxt);
+                string gID = gidTxt.Text;
+                string oID = objTxt.Text;
+                string sNum = sNumTxt.Text;
+                string sDesc = sDescTxt.Text;
+                string timeLines = tTxt.Text;
+                DateTime dt2 = Convert.ToDateTime(timeLines);
+                string tDate = dt2.Year + "-" + dt2.Month + "-" + dt2.Day;
+                cmd.Parameters.AddWithValue("@gID", gID);
+                cmd.Parameters.AddWithValue("@objID", oID);
+                cmd.Parameters.AddWithValue("@sNum", sNum);
+                cmd.Parameters.AddWithValue("@sDesc", sDesc);
+                cmd.Parameters.AddWithValue("@timeLine", tDate);
                 cmd.Parameters.AddWithValue("@record", record);
                 cmd.ExecuteNonQuery();
             }
@@ -84,9 +98,9 @@ namespace spip
             finally
             {
                 ClientScriptManager cs = Page.ClientScript;
-                cs.RegisterStartupScript(this.GetType(), "showalert", "alert('Objective Updated')", true);
+                cs.RegisterStartupScript(this.GetType(), "showalert", "alert('Strategy Updated')", true);
                 con.Close();
-                Response.Redirect("~/objectives.aspx");
+                Response.Redirect("~/strategies.aspx");
             }
         }
     }

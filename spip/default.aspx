@@ -40,6 +40,7 @@
                 <asp:Button ID="login" class="btn btn-primary pull-right" runat="server" Text="Login" OnClick="login_Click" />
                 </div>
             <asp:Label runat="server" ID="lblPgStatus"></asp:Label>
-            </form>  
+
+            </form>  </div>
             </body>
 </html>

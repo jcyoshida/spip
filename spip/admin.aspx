@@ -24,5 +24,11 @@
             </asp:LinkButton>
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-md-2">
+            <asp:LinkButton ID="LinkButton3" runat="server" CssClass="btn btn-success btn-block" OnClick="LinkButton3_Click">
+                <span class="glyphicon glyphicon-user"></span> Add/Edit Users
+            </asp:LinkButton>
+        </div>
+    </div>
 </asp:Content>

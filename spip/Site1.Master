@@ -15,6 +15,7 @@
 <script src="scripts/jquery-2.2.1.min.js"></script>
 <script src="scripts/bootstrap.min.js"></script>
 <script src="scripts/jquery-ui-1.11.4.min.js"></script>
+<script src="scripts/jquery.responsivetable.min.js"></script>
 <body>
     <form id="form1" runat="server">
     <div class="container">
@@ -45,12 +46,15 @@
               </ul>
               <ul class="nav navbar-nav navbar-right">
                   
-                  <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Admin</a></li>
+                  <li>
+                      <asp:LinkButton ID="btnAdmin" runat="server" OnClick="btnAdmin_Click">
+                          <span class="glyphicon glyphicon-cog"></span> Admin
+                      </asp:LinkButton>
+                      </li>
                   <li>
                       <asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click">
                         <span class="glyphicon glyphicon-log-out"></span> Logout
                     </asp:LinkButton></li>
-                  <%--<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>--%>
                 </ul>
             </div>
           </div>

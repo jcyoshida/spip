@@ -2,7 +2,7 @@
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12">
-    <asp:LinkButton ID="btnNew" runat="server" CssClass="btn btn-success" OnClick="btnNew_Click" >
+    <asp:LinkButton ID="btnNew" runat="server" CssClass="btn btn-primary" OnClick="btnNew_Click" >
         <span class="glyphicon glyphicon-plus-sign"></span> Create New User
     </asp:LinkButton>
     <br /><br />

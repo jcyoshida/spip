@@ -168,8 +168,8 @@
     <Content Include="scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="scripts\stuff.js" />
     <Content Include="Site1.Master" />
-    <None Include="Properties\PublishProfiles\Probnet.pubxml" />
     <None Include="Properties\PublishProfiles\ProbStraPlan.pubxml" />
+    <None Include="Properties\PublishProfiles\ProbWebTest001.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

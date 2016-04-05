@@ -136,9 +136,17 @@ namespace spip
             string desc = brief_desc.Text;
             string ap = actionPlan.Text;
             string ad = ant_date.Text;
+            if (ad == null)
+            {
+                ad = "00/00/0000";
+            }
             DateTime dt = Convert.ToDateTime(ad);
             string aDate = dt.Year+"-"+dt.Month+"-"+dt.Day;
             string iDate = imp_date.Text;
+            if (iDate == null)
+            {
+                iDate = "00/00/0000";
+            }
             DateTime dt2 = Convert.ToDateTime(iDate);
             string impDate = dt2.Year + "-" + dt2.Month + "-" + dt2.Day;
             string apStatus = ap_status.SelectedValue;
